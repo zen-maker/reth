@@ -7,7 +7,7 @@ use alloc::fmt;
 
 use reth_codecs::Compact;
 
-use crate::{BlockHeader, FullBlockHeader, InMemorySize};
+use crate::{BlockHeader, FullBlockHeader, InMemorySize, MaybeArbitrary};
 
 /// Helper trait that unifies all behaviour required by block to support full node operations.
 pub trait FullBlock: Block<Header: Compact> + Compact {}
@@ -31,6 +31,7 @@ pub trait Block:
     + serde::Serialize
     + for<'a> serde::Deserialize<'a>
     + InMemorySize
+    + MaybeArbitrary
 {
     /// Header part of the block.
     type Header: BlockHeader + 'static;
