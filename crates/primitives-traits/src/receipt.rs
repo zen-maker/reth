@@ -7,6 +7,8 @@ use core::fmt;
 use reth_codecs::Compact;
 use serde::{Deserialize, Serialize};
 
+use crate::MaybeArbitrary;
+
 /// Helper trait that unifies all behaviour required by receipt to support full node operations.
 pub trait FullReceipt: Receipt + Compact {}
 
@@ -26,6 +28,7 @@ pub trait Receipt:
     + alloy_rlp::Decodable
     + Serialize
     + for<'de> Deserialize<'de>
+    + MaybeArbitrary
 {
     /// Returns transaction type.
     fn tx_type(&self) -> u8;

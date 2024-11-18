@@ -1,6 +1,6 @@
 //! Block header data primitive.
 
-use crate::InMemorySize;
+use crate::{InMemorySize, MaybeArbitrary};
 use alloy_primitives::Sealable;
 use core::fmt;
 use reth_codecs::Compact;
@@ -26,6 +26,7 @@ pub trait BlockHeader:
     + alloy_consensus::BlockHeader
     + Sealable
     + InMemorySize
+    + MaybeArbitrary
 {
 }
 
@@ -45,5 +46,6 @@ impl<T> BlockHeader for T where
         + alloy_consensus::BlockHeader
         + Sealable
         + InMemorySize
+        + MaybeArbitrary
 {
 }
